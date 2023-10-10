@@ -96,4 +96,12 @@ th{
 {
     display: none;
 }
-
+.buttons>button,#addsheet,#remove{
+    margin-inline: 5px;
+    height: 30px;
+    width: 70px;
+    border-radius: 5px;
+  }
+  #addsheet:hover,#remove:hover{
+     background-color: bisque;
+  }

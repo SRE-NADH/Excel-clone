@@ -22,6 +22,7 @@ const sheet1 = document.getElementById("sheet-1");
 
 const functionbar = document.getElementsByClassName("functionbar")[0];
 const removebutton = document.getElementById("remove");
+const buttoncontainer = document.getElementsByClassName('buttons')[0];
 
 const row=26;
 const col=100;
@@ -324,8 +325,9 @@ function createsheetbutton(){
     let button = document.createElement("button");
     button.innerText = `sheet${currsheet}`;
     button.id = `sheet-${currsheet}`;
-    functionbar.append(button);
+    buttoncontainer.append(button);
     button.setAttribute("onclick",'viewsheet(event)');
+    sheetButtonHighliter();
     prevsheet=numsheet;
 }
 
@@ -351,19 +353,12 @@ function removesheet(){
     }
     let button = document.getElementById(`sheet-${currsheet}`);
     let tmparr = JSON.parse(sessionStorage.getItem('arrMatrix'))
-    tmparr[currsheet-1]=[];
+    tmparr.splice(currsheet-1,1);
     console.log(tmparr[currsheet-1]);
     sessionStorage.setItem('arrMatrix', JSON.stringify(tmparr));
-    numsheet--;
-    currsheet=numsheet;
-    let prevbutton= document.getElementById(`sheet-${currsheet}`);
-    if(prevbutton==null){
-        sheet1.click();
-    }
-    else{
-     prevbutton.click();
-    }
+    createsheets();
     button.remove();
+    sheetButtonHighliter();
 }
 
 function viewsheet(e){
@@ -385,6 +380,7 @@ function viewsheet(e){
     //console.log(matrix);
     createtable();
     renderMatrix();
+    sheetButtonHighliter();
     prevsheet=currsheet;
 }
 
@@ -405,22 +401,45 @@ function saveToSectionStorage(){
 
 
 
-let aarr = sessionStorage.getItem('arrMatrix');
-if(aarr){
-    let array = JSON.parse(aarr);
-   
-    let n = array.length;
-    for(let i=1;i<n;i++){
-        if(array[i]!=""){
-           createsheetbutton();
-        }
-    }
-    loadcurrentsheet(array);
- }
+
+
  // load current sheet 
  function loadcurrentsheet(array){
     
     matrix=array[currsheet-1];
     createtable();
     renderMatrix();
+ }
+  
+ function createsheets(){
+  buttoncontainer.innerHTML="";
+  numsheet=0;
+  currsheet=0;
+  prevsheet=0;
+    let aarr = sessionStorage.getItem('arrMatrix');
+    if(aarr){
+        let array = JSON.parse(aarr);
+        let n = array.length;
+        for(let i=0;i<n;i++){
+            createsheetbutton();
+     }
+     loadcurrentsheet(array);
+ }
+ }
+
+ let checkarr = sessionStorage.getItem('arrMatrix');
+ if(checkarr) {
+    createsheets(); 
+}// work when refresh
+else{
+    sheetButtonHighliter(); // for starting purpose
+}
+
+ function sheetButtonHighliter(){
+    let button = document.getElementById(`sheet-${currsheet}`);
+    button.style.backgroundColor=color;
+    if(prevsheet!=currsheet && prevsheet!=0){
+        let prevbutton = document.getElementById(`sheet-${prevsheet}`);
+        prevbutton.style.backgroundColor='transparent'
+    }
  }
