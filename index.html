@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+        <div class="navbar">
+            <a>File</a>
+            <a>Home</a>
+            <a>Insert</a>
+            <a>Layout</a>
+            <a>Help</a>
+        </div>
+        <div class="functionbar">
+            <i class="fa-regular fa-copy" id="copy"></i>
+            <i class="fa-solid fa-scissors" id="cut"></i>
+            <i class="fa-regular fa-paste" id="paste"></i>
+            <select id="fontStyle-dropdown">
+                <option value="serif">Serif</option>
+                <option value="sans-serif">Sans Serif</option>
+                <option value="monospace">Monospace</option>
+                <option value="cursive">cursive</option>
+            </select>
+            <select id="fontSize-dropdown">
+                <option value="14px">14</option>
+                <option value="16px">16</option>
+                <option value="18px">18</option>
+                <option value="20px">20</option>
+            </select>
+            <i class="fa-solid fa-bold" id="bold"></i>
+            <i class="fa-solid fa-italic" id="italic"></i>
+            <i class="fa-solid fa-underline" id="underline"></i>
+            <i class="fa-solid fa-align-left" id="left"></i>
+            <i class="fa-solid fa-align-center" id="center"></i>
+            <i class="fa-solid fa-align-right" id="right"></i>
+            <div id="text-color"><img src="./img/text-editor.png" alt="" width="30px"><input type="color"></div>
+            <div id="fill-color"><img src="./img/bucket.png" alt="" width="30px"><input type="color"></div>
+            <i class="fa-solid fa-upload" id="upload"></i>
+            <i class="fa-solid fa-download" id="download" onclick="downloadmatrix()"></i>
+            <input type="file" accept=".json" id="uploadinput">
+            <button id="addsheet">addsheet</button>
+            <!-- <button id="save">save</button> -->
+            <button id="remove">remove</button>
+            <button id="sheet-1">sheet1</button>
+    
+        </div>
+         <div class="tableStat">
+           <div id="cellNo">Tno</div>
+           <label for="text"><i>fx</i></label>
+           <input type="text" id="text">
+         </div>
+
+         <div class="mainbody">
+            <table>
+                <thead>
+                    <tr class="tableheading-row">
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+             </table>
+         </div>
+    
+    <script src="https://kit.fontawesome.com/8698dc1579.js" crossorigin="anonymous"></script>
+    <Script src="script.js"></Script>
+</body>
+</html>
